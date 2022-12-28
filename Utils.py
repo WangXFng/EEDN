@@ -43,7 +43,7 @@ def type_loss(prediction, label, event_time, test_label, smooth):
     elif C.DATASET == 'Gowalla':
         beta, lambda_ = 1.5, 4  # 0.38, 1  # 1.5, 4
     elif C.DATASET == 'Yelp2018':
-        beta, lambda_ = 1.8, 4  # 0.35, 1  # 1, 4
+        beta, lambda_ = 1, 4  # 0.35, 1  # 1, 4
     elif C.DATASET == 'douban-book':
         beta, lambda_ = 0.5, 1
     # elif C.DATASET == 'ml-1M':
@@ -64,16 +64,6 @@ def type_loss(prediction, label, event_time, test_label, smooth):
     loss = torch.sum(predict_loss)
 
     return loss
-
-
-def mmd_loss(event_type, users_embeddings, model):
-    mmd_loss = []
-    for l, ue in zip(event_type, users_embeddings):
-        l = l[l != 0]
-        mmd_loss.append(mmd_rbf(model.event_emb(l), ue.unsqueeze(0)))
-
-    return sum(mmd_loss) / len(mmd_loss) # / lambda_
-
 
 # def bpr_loss(user_emb, pos_item_emb, neg_item_emb):
 #     pos_score = torch.mul(user_emb, pos_item_emb).sum(dim=1)

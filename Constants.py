@@ -8,7 +8,7 @@ ENCODER = 'hGCN'
 # Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
 ABLATION = 'Full'
 
-COLD_START = False  # True, False
+COLD_START = True  # True, False
 
 user_dict = {
     'Yelp': 30887,

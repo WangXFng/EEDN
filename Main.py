@@ -52,7 +52,7 @@ def train_epoch(model, user_dl, optimizer, opt):
     return pre_np, rec_np, map_np, ndcg_np
 
 
-def eval_epoch(model, user_valid_dl, opt, valid_user_embeddings):
+def eval_epoch(model, user_valid_dl, opt):
     """ Epoch operation in evaluation phase. """
 
     model.eval()
@@ -65,8 +65,6 @@ def eval_epoch(model, user_valid_dl, opt, valid_user_embeddings):
 
             """ forward """
             prediction, users_embeddings = model(user_idx, event_type)  # X = (UY+Z) ^ T
-
-            valid_user_embeddings[user_idx] = users_embeddings
 
             """ compute metric """
             metric.pre_rec_top(pre, rec, map_, ndcg, prediction, test_label, event_type)
@@ -110,20 +108,6 @@ def train(model, data, optimizer, scheduler, opt):
         scheduler.step()
         valid_precision_max = valid_precision_max if valid_precision_max > pre_np[1] else pre_np[1]
 
-        # path = './result/{}/'.format(C.DATASET)
-        # folder = "{accuracy:8.5f}/".format(accuracy=valid_precision_max)
-        # if not os.path.exists(path) or len(os.listdir(path)) == 0:
-        #     if not os.path.exists(path): os.mkdir(path)
-        #     if not os.path.exists(path+folder): os.mkdir(path+folder)
-        #     np.save(path+folder+"user.npy", valid_user_embeddings.cpu().numpy())
-        #     np.save(path+folder+"poi.npy", model.event_emb.weight.detach().cpu().numpy())
-        # for file_name in os.listdir(path):
-        #     if float(file_name) < valid_precision_max:
-        #         shutil.rmtree(path+file_name)
-        #         os.mkdir(path + folder)
-        #         np.save(path+folder+"user.npy", valid_user_embeddings.cpu().numpy())
-        #         np.save(path+folder+"poi.npy", model.event_emb.weight.detach().cpu().numpy())
-
     return valid_precision_max
 
 
@@ -149,13 +133,9 @@ def main(trial):
     opt = parser.parse_args()
     opt.device = torch.device('cuda')
 
-    # # # optuna setting for tuning hyperparameters
+    # optuna setting for tuning hyperparameters
     # opt.n_layers = trial.suggest_int('n_layers', 2, 2)
-    # opt.d_inner_hid = trial.suggest_int('n_hidden', 512, 1024, 128)
-    # opt.d_k = trial.suggest_int('d_k', 512, 1024, 128)
-    # opt.d_v = trial.suggest_int('d_v', 512, 1024, 128)
     # opt.n_head = trial.suggest_int('n_head', 1, 5, 1)
-    # # opt.d_rnn = trial.suggest_int('d_rnn', 128, 512, 128)
     # opt.d_model = trial.suggest_int('d_model', 128, 1024, 128)
     # opt.dropout = trial.suggest_uniform('dropout_rate', 0.5, 0.7)
     # opt.smooth = trial.suggest_uniform('smooth', 1e-2, 1e-1)
@@ -171,14 +151,11 @@ def main(trial):
     elif C.DATASET == 'Gowalla': opt.d_model, opt.n_head = 1024, 1
     elif C.DATASET == 'Yelp2018': opt.d_model, opt.n_head = 1024, 2
     else: opt.d_model, opt.n_head = 1024, 1
-
     print('[Info] parameters: {}'.format(opt))
-    num_types = C.POI_NUMBER
-    num_user = C.USER_NUMBER
 
     """ prepare model """
     model = Model(
-        num_types=num_types,
+        num_types=C.POI_NUMBER,
         d_model=opt.d_model,
         n_layers=opt.n_layers,
         n_head=opt.n_head,
@@ -188,8 +165,8 @@ def main(trial):
     model = model.cuda()
 
     """ loading data"""
-    ds = dataset()
     print('[Info] Loading data...')
+    ds = dataset()
     user_dl = ds.get_user_dl(opt.batch_size)
     user_valid_dl = ds.get_user_valid_dl(opt.batch_size)
     data = (user_valid_dl, user_dl)
@@ -198,39 +175,21 @@ def main(trial):
     parameters = [
                   {'params': model.parameters(), 'lr': opt.lr},
                   ]
-    optimizer = torch.optim.Adam(parameters)  # , weight_decay=0.01
+    optimizer = torch.optim.Adam(parameters)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.5)
 
-    """ number of parameters """
-    num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print('[Info] Number of parameters: {}'.format(num_params))
-
-    # user_embeddings_before_training = get_user_embeddings(model, user_valid_dl, opt)
-    # path = './result/{}/'.format(C.DATASET)
-    # if not os.path.exists(path):
-    #     os.mkdir(path)
-    # np.save(path + "before_training.npy", user_embeddings_before_training.detach().cpu().numpy())
-    # print(path + "before_training.npy")
-
-    # user_embeddings_before_training = None
+    # """ number of parameters """
+    # num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    # print('[Info] Number of parameters: {}'.format(num_params))
 
     """ train the model """
     return train(model, data, optimizer, scheduler, opt)
 
 
 if __name__ == '__main__':
-    # main()
     assert C.ENCODER in {'Transformer', 'gMLP', 'TransformerLS', 'hGCN', 'None'}
-    assert C.ABLATION in {'Full', 'w/oImFe', 'w/oMMD', 'w/oMatcher', 'w/oFeTra', 'w/oGlobal', 'w/oAtt', 'w/oConv', 'w/oGraIm'}
+    assert C.ABLATION in {'Full', 'w/oImFe', 'w/oFeTra', 'w/oGlobal', 'w/oAtt', 'w/oConv', 'w/oGraIm'}
     study = optuna.create_study(direction="maximize")
     study.optimize(main, n_trials=100)
 
-    # df = study.trials_dataframe()
-    #
-    # print("Best trial:")
-    # trial = study.best_trial
-    # print("  Value: ", trial.value)
-    # print("  Params: ")
-    # for key, value in trial.params.items():
-    #     print("    {}: {}".format(key, value))
 

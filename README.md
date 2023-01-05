@@ -1,7 +1,19 @@
 # EEDN
 
 <table>
-    <tr><td rowspan="6">Douban-book</td><td>Recall@5 </td></td>0.0661</td></td>0.0640</td></td>0.0708</td></td>0.0693</td></td>0.0700</td></td>0.0753</td></td>0.0795</td></td>0.0997 </td></td>+34.2%</td></tr>
+	<tr>
+	    <th>Dataset</th>
+	    <th>Metric</th>
+	    <th>SAE-NAD</th>  
+	    <th>LightGCN</th>  
+	    <th>STaTRL</th>  
+	    <th>DirectAU</th>  
+	    <th>NCL</th>  
+	    <th>SIMGCL</th>  
+	    <th>Ours</th>  
+	    <th>Improv.</th>  
+	</tr >
+<tr><td rowspan="6">Douban-book</td><td>Recall@5 </td></td>0.0661</td></td>0.0640</td></td>0.0708</td></td>0.0693</td></td>0.0700</td></td>0.0753</td></td>0.0795</td></td>0.0997 </td></td>+34.2%</td></tr>
     <tr><td></td><td>NDCG@5 </td></td> 0.1094</td></td>0.1170</td></td>0.1334</td></td>0.1370</td></td>0.1153</td></td>0.1328 </td></td>0.1459</td></td>0.1931 </td></td>+32.4%</td></tr>
     <tr><td></td><td>Recall@10 </td></td>0.0721</td></td>0.0972</td></td>0.1034</td></td>0.0994</td></td>0.0996</td></td>0.1133 </td></td>0.1167</td></td>0.1413 </td></td>+21.1%</td></tr>
     <tr><td></td><td>NDCG@10 </td></td>0.0913</td></td>0.1165</td></td>0.1291</td></td>0.1286</td></td>0.1131</td></td>0.1323</td></td>0.1424</td></td>0.1822 </td></td>+27.9%</td></tr>

@@ -39,7 +39,7 @@
     <tr><td>Recall@20 </td><td>0.0666</td><td>0.0880</td><td>0.0998</td><td>0.0897</td><td>0.0986</td><td>0.0991</td><td>0.1012</td><td>0.1020 </td><td>+0.8%</td></tr>
     <tr><td>NDCG@20 </td><td>0.0289</td><td>0.0591</td><td>0.0676</td><td>0.0620</td><td>0.0669</td><td>0.0679</td><td>0.0690</td><td>0.0702 </td><td>+1.7%</td></tr>
     <tr><td rowspan="6">Yelp2018</td><td>Recall@5 </td><td>0.0190</td><td>0.0191</td><td>0.0220</td><td>0.0215</td><td>0.0238</td><td>0.0223</td><td>0.0242</td><td>0.0267 </td><td>+10.3%</td></tr>
-    <tr><td>NDCG@5 </td><td>0.0341</td><td>0.0371</td><td>0.0421</td><td>0.0415</td><td>0.0458</td><td>0.0428 & 0.0461</td><td>0.0508 </td><td>+10.2%</td></tr>
+    <tr><td>NDCG@5 </td><td>0.0341</td><td>0.0371</td><td>0.0421</td><td>0.0415</td><td>0.0458</td><td>0.0428</td><td>0.0461</td><td>0.0508 </td><td>+10.2%</td></tr>
     <tr><td>Recall@10 </td><td>0.0333</td><td>0.0341</td><td>0.0384</td><td>0.0372</td><td>0.0413</td><td>0.0390 </td><td>0.0426</td><td>0.0457 </td><td>+7.3%</td></tr>
     <tr><td>NDCG@10 </td><td>0.0311</td><td>0.0397</td><td>0.0447</td><td>0.0420</td><td>0.0482</td><td>0.0456</td><td>0.0493</td><td>0.0531 </td><td>+7.7%</td></tr>
     <tr><td>Recall@20 </td><td>0.0562</td><td>0.0582</td><td>0.0659</td><td>0.0662</td><td>0.0705</td><td>0.0665</td><td>0.0721</td><td>0.0760 </td><td>+5.4%</td></tr>

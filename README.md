@@ -1,9 +1,7 @@
 # EEDN
 
-### Run
+### Run (the configures are given by Constants.py)
 > python Main.py
-
-### the configures are given by Constants.py
 
 ## Datasets
 <table>

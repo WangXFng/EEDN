@@ -15,12 +15,12 @@
 
 <table>
 	<tr><th></th><th></th><th>CIKM'18</th><th>SIGIR'20</th><th>SIGIR'21</th><th>APIN'22</th><th>KDD'22</th><th>WWW'22</th><th>SIGIR'22</th><th></th><th></th></tr>
-	<tr><th>Dataset</th><th>Metric</th><th>SAE-NAD</th><th>SGL</th><th>LightGCN</th><th>STaTRL</th><th>DirectAU</th><th>NCL</th><th>SIMGCL</th><th>Ours</th><th>Improv.</th></tr>
+	<tr><th>Dataset</th><th>Metric</th><th>SAE-NAD</th><th>LightGCN</th><th>SGL</th><th>STaTRL</th><th>DirectAU</th><th>NCL</th><th>SIMGCL</th><th>Ours</th><th>Improv.</th></tr>
     <tr><td rowspan="6">Douban-book</td><td>Recall@5 </td><td>0.0661</td><td>0.0640</td><td>0.0708</td><td>0.0693</td><td>0.0700</td><td>0.0753</td><td>0.0795</td><td><b>0.0997</b> </td><td>+34.2%</td></tr>
     <tr><td>NDCG@5 </td><td> 0.1094</td><td>0.1170</td><td>0.1334</td><td>0.1370</td><td>0.1153</td><td>0.1328 </td><td>0.1459</td><td><b>0.1931</b> </td><td>+32.4%</td></tr>
     <tr><td>Recall@10 </td><td>0.0721</td><td>0.0972</td><td>0.1034</td><td>0.0994</td><td>0.0996</td><td>0.1133 </td><td>0.1167</td><td><b>0.1413</b> </td><td>+21.1%</td></tr>
     <tr><td>NDCG@10 </td><td>0.0913</td><td>0.1165</td><td>0.1291</td><td>0.1286</td><td>0.1131</td><td>0.1323</td><td>0.1424</td><td><b>0.1822</b> </td><td>+27.9%</td></tr>
-    <tr><td>Recall@20 </td><td>0.1104</td><td>0.1455</td><td>0.1478</td><td>0.1401</td><td>0.1358</td><td>0.1631</td><td>0.1770</td><td><b>0.1917</b> </td><td>+8.3%</td></tr>
+    <tr><td>Recall@20 </td><td>0.1104</td><td>0.1455</td><td>0.1478</td><td>0.1401</td><td>0.1358</td><td>0.1631</td><td>0.1770</td><td><b>0.1954</b> </td><td>+10.4%</td></tr>
     <tr><td>NDCG@20 </td><td>0.0738</td><td>0.1253</td><td>0.1351</td><td>0.1313</td><td>0.1193</td><td>0.1413</td><td>0.1582</td><td><b>0.1840</b> </td><td>+16.3%</td></tr>
     <tr><td rowspan="6">Gowalla</td><td>Recall@5 </td><td>0.0470</td><td>0.0508</td><td>0.0524</td><td>0.0517</td><td>0.0457</td><td>0.0535</td><td>0.0541</td><td><b>0.0602</b> </td><td>+11.3%</td></tr>
     <tr><td>NDCG@5 </td><td>0.0699</td><td>0.0846</td><td>0.0882</td><td>0.0840</td><td>0.0733</td><td>0.0890</td><td>0.0885</td><td><b>0.0996</b> </td><td>+11.9%</td></tr>

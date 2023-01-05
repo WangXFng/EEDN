@@ -14,7 +14,7 @@
 ## Results
 
 <table>
-	<tr><th>Dataset</th><th>Metric</th><th>CIKM'18</th><th>SIGIR'20</th><th>SIGIR'21</th><th>APIN'22</th><th>KDD'22</th><th>WWW'22</th><th>SIGIR'22</th><th></th><th></th></tr>
+	<tr><th></th><th></th><th>CIKM'18</th><th>SIGIR'20</th><th>SIGIR'21</th><th>APIN'22</th><th>KDD'22</th><th>WWW'22</th><th>SIGIR'22</th><th></th><th></th></tr>
 	<tr><th>Dataset</th><th>Metric</th><th>SAE-NAD</th><th>SGL</th><th>LightGCN</th><th>STaTRL</th><th>DirectAU</th><th>NCL</th><th>SIMGCL</th><th>Ours</th><th>Improv.</th></tr>
     <tr><td rowspan="6">Douban-book</td><td>Recall@5 </td><td>0.0661</td><td>0.0640</td><td>0.0708</td><td>0.0693</td><td>0.0700</td><td>0.0753</td><td>0.0795</td><td><b>0.0997</b> </td><td>+34.2%</td></tr>
     <tr><td>NDCG@5 </td><td> 0.1094</td><td>0.1170</td><td>0.1334</td><td>0.1370</td><td>0.1153</td><td>0.1328 </td><td>0.1459</td><td><b>0.1931</b> </td><td>+32.4%</td></tr>

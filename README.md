@@ -5,6 +5,7 @@
 	    <th>Dataset</th>
 	    <th>Metric</th>
 	    <th>SAE-NAD</th>
+	    <th>SGL</th>
 	    <th>LightGCN</th>
 	    <th>STaTRL</th>
 	    <th>DirectAU</th>
@@ -12,7 +13,7 @@
 	    <th>SIMGCL</th>
 	    <th>Ours</th>
 	    <th>Improv.</th>
-	</tr >
+	</tr>
     <tr>
     <td rowspan="6">Douban-book</td>
     <td>Recall@5 </td><td>0.0661</td><td>0.0640</td><td>0.0708</td><td>0.0693</td><td>0.0700</td><td>0.0753</td><td>0.0795</td><td>0.0997 </td><td>+34.2%</td></tr>

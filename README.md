@@ -1,8 +1,17 @@
 # EEDN
 
+## Datasets
+<table>
+	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> </tr>
+	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> </tr>
+	<tr> <td> Gowalla</td> <td> 18,737</td> <td> 32,510</td> </tr>
+	<tr> <td> Foursquare</td> <td> 7,642</td> <td> 28,483</td> </tr>
+	<tr> <td> Yelp challenge round 7</td> <td> 30,887</td> <td> 18,995</td> </tr>
+	<tr> <td> Yelp2018</td> <td> 31,668</td> <td> 38,048</td> </tr>
+</table>
 
 
-
+## Results
 <table>
 	<tr><th>Dataset</th><th>Metric</th><th>SAE-NAD</th><th>SGL</th><th>LightGCN</th><th>STaTRL</th><th>DirectAU</th><th>NCL</th><th>SIMGCL</th><th>Ours</th><th>Improv.</th></tr>
     <tr><td rowspan="6">Douban-book</td><td>Recall@5 </td><td>0.0661</td><td>0.0640</td><td>0.0708</td><td>0.0693</td><td>0.0700</td><td>0.0753</td><td>0.0795</td><td>0.0997 </td><td>+34.2%</td></tr>

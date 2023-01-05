@@ -1,5 +1,10 @@
 # EEDN
 
+### Run
+> python Main.py
+
+### the configures are given by Constants.py
+
 ## Datasets
 <table>
 	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> </tr>

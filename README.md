@@ -1,9 +1,15 @@
-# EEDN
+## EEDN
 
-### Run (the configures are given by Constants.py)
+### Run (Configures are given by Constants.py)
 > python Main.py
 
-## Datasets
+### Dependencies
+* Python 3.7.6
+* [Anaconda](https://www.anaconda.com/) 4.8.2 contains all the required packages.
+* [PyTorch](https://pytorch.org/) version 1.7.1.
+
+
+### Datasets
 <table>
 	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> </tr>
 	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> </tr>
@@ -14,7 +20,7 @@
 </table>
 
 
-## Results (The state-of-the-art performance on five real-world datasets)
+### Results (The state-of-the-art performance on five real-world datasets)
 
 <table>
 	<tr><th></th><th></th><th>CIKM'18</th><th>SIGIR'20</th><th>SIGIR'21</th><th>APIN'22</th><th>KDD'22</th><th>WWW'22</th><th>SIGIR'22</th><th></th><th></th></tr>
@@ -50,3 +56,6 @@
     <tr><td>Recall@20 </td><td>0.0562</td><td>0.0582</td><td>0.0659</td><td>0.0662</td><td>0.0705</td><td>0.0665</td><td>0.0721</td><td><b>0.0760</b> </td><td>+5.4%</td></tr>
     <tr><td>NDCG@20 </td><td>0.0277</td><td>0.0484</td><td>0.0549</td><td>0.0501</td><td>0.0589</td><td>0.0558</td><td>0.0601</td><td><b>0.0639</b> </td><td>+6.3%</td></tr>
 </table>
+
+### Note
+* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.150-153).

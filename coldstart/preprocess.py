@@ -2,6 +2,7 @@ import sys
 sys.path.append("..")
 import Constants as C
 import numpy as np
+import os
 
 # Yelp2018  Gowalla  Foursquare  Yelp ml-1M douban-book
 
@@ -19,8 +20,10 @@ def parse(user_traj, data):
 def select_cold_start_users():
     user_traj = {}
     directory_path = './data/{dataset}/'.format(dataset=C.DATASET)
-    parse(user_traj, open(directory_path + 'train.txt', 'r').readlines())
-    parse(user_traj, open(directory_path + 'test.txt', 'r').readlines())
+
+    parse(user_traj, open(directory_path + '{dataset}_train.txt'.format(dataset=C.DATASET), 'r').readlines())
+    parse(user_traj, open(directory_path + '{dataset}_tune.txt'.format(dataset=C.DATASET), 'r').readlines())
+    parse(user_traj, open(directory_path + '{dataset}_test.txt'.format(dataset=C.DATASET), 'r').readlines())
 
     len_map, len_include_user, user_lem_dict = {}, {}, {}
     for uid, user_j in enumerate(user_traj):
@@ -62,7 +65,7 @@ def select_cold_start_users():
     #
     cold_start_test_file = '{dataset}_cold_start_test.txt'.format(dataset=C.DATASET)
     with open(directory_path + cold_start_test_file, 'w')as f:
-        for eachline in open(directory_path + 'test.txt', 'r').readlines():
+        for eachline in open(directory_path + '{dataset}_test.txt'.format(dataset=C.DATASET), 'r').readlines():
             uid, lid, times = eachline.strip().split()
             uid, lid, times = int(uid), int(lid) + 1, int(times)
             if uid in cold_start_useridx_dict:

@@ -49,8 +49,8 @@ def read_interaction(train_data=None, directory_path=None):
     if directory_path is None:
         directory_path = './data/{dataset}/'.format(dataset=C.DATASET)
     if train_data is None:
-        train_file = 'train.txt'.format(dataset=C.DATASET)
-        train_data = open(directory_path + train_file, 'r').readlines()
+        train_data = open(directory_path + '{dataset}_train.txt'.format(dataset=C.DATASET), 'r').readlines()
+        train_data.extend(open(directory_path + '{dataset}_tune.txt'.format(dataset=C.DATASET), 'r').readlines())
     count = 0
 
     interaction_matrix = torch.zeros((C.USER_NUMBER, C.POI_NUMBER), device='cuda:0')

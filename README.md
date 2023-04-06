@@ -1,7 +1,13 @@
 ## EEDN
 
-### Run (Configures are given by Constants.py)
+### Run (Configures are given by Constants.py and Main.py)
 > python Main.py
+
+
+### Note
+* As we have mentioned in the paper, EEDN requires a shallow and wide constracture, please DO NOT over limit the embedding size for comparison.
+* As $\lambda$ and $\delta$ are sensitive, please tune the hyperparameter at least 100 times, which has been implemented by the given code in Main.py (line)
+* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.150-153).
 
 ### Dependencies
 * Python 3.7.6
@@ -57,5 +63,4 @@
     <tr><td>NDCG@20 </td><td>0.0277</td><td>0.0484</td><td>0.0549</td><td>0.0501</td><td>0.0589</td><td>0.0558</td><td>0.0601</td><td><b>0.0639</b> </td><td>+6.3%</td></tr>
 </table>
 
-### Note
-* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.150-153).
+

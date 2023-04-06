@@ -6,7 +6,7 @@
 
 ### Note
 * As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
-* When you aplly EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **has been implemented** by the given code in Main.py (line.162)
+* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
 * If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
 * If you have any problem, please contact me by kaysenn@163.com.
 

@@ -5,9 +5,10 @@
 
 
 ### Note
-* As we have mentioned in the paper, EEDN requires a shallow and wide constracture, please DO NOT over limit the embedding size for comparison.
-* As $\lambda$ and $\delta$ are sensitive, please tune the hyperparameter at least 100 times, which has been implemented by the given code in Main.py (line)
-* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.150-153).
+* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparison.
+* As $\lambda$ and $\delta$ are sensitive, please tune the hyperparameter at least 100 times, which has been implemented by the given code in Main.py (line.162)
+* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
+* If you have any problem, please contact me by kaysenn@163.com
 
 ### Dependencies
 * Python 3.7.6

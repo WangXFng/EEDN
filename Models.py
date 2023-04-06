@@ -1,22 +1,16 @@
-import argparse
 import scipy.sparse as sp
 import torch.nn
 import torch.nn as nn
 import numpy as np
 
 import os
-import Utils
 from Utils import *
 from gMLP.gmlp import gMLP
 from hGCN.hGCN import hGCNEncoder
-from transformer.Layers import EncoderLayer, MultiHeadAttention
+from transformer.Layers import EncoderLayer
 from transformerls.lstransformer import TransformerLS
 from preprocess.cal_poi_pairwise import read_interaction
 
-if torch.cuda.is_available():
-    import torch.cuda as T
-else:
-    import torch as T
 
 
 class Encoder(nn.Module):
@@ -60,36 +54,28 @@ class Encoder(nn.Module):
 
     def forward(self, user_id, event_type, enc_output, slf_attn_mask, non_pad_mask):
         """ Encode event sequences via masked self-attention. """
-        if C.ENCODER == 'None':
-            return self.user_emb(user_id)
-
         if C.ENCODER == 'Transformer':
 
             for enc_layer in self.layer_stack:
-                # if C.DATASET == 'Gowalla':
                 residual = enc_output
                 enc_output, _ = enc_layer(
                     enc_output,
                     non_pad_mask=non_pad_mask,  # non_pad_mask
                     slf_attn_mask=slf_attn_mask,  # slf_attn_mask
                 )
-                # if C.DATASET == 'Gowalla':
                 enc_output += residual
-
 
         elif C.ENCODER == 'gMLP':
             enc_output = self.gmlp(enc_output)
 
         elif C.ENCODER == 'hGCN':
             # get individual adj
-            # residual = enc_output
             adj = torch.zeros((event_type.size(0), event_type.size(1), event_type.size(1)), device='cuda:0')
             for i, e in enumerate(event_type):
                 adj[i] = self.ui_adj[e-1, e-1]
 
             for enc_layer in self.layer_stack:
                 enc_output = enc_layer(enc_output, adj, event_type)
-            # enc_output += residual
 
         if C.ENCODER == 'LSTransformer':
             for enc_layer in self.layer_stack:
@@ -101,7 +87,6 @@ class Encoder(nn.Module):
                 enc_output += residual
 
         return enc_output.mean(1)
-        # return self.conv3(enc_output.unsqueeze(1)).squeeze(1).squeeze(1)
 
     def normalize_graph_mat(self, adj_mat):
         shape = adj_mat.get_shape()
@@ -130,8 +115,7 @@ class Predictor(nn.Module):
         self.dropout = nn.Dropout(0.5)
         self.temperature = 512 ** 0.5
 
-        # self.conv = torch.nn.Conv2d(1, 1, (3, 3), padding=1, padding_mode='zeros')
-        self.conv = torch.nn.Conv2d(1, 1, (9, 9), padding=4, padding_mode='zeros')
+        self.conv = torch.nn.Conv2d(1, 1, (3, 3), padding=1, padding_mode='zeros')
         self.conv3 = torch.nn.Conv2d(1, 1, (700, 1))
 
         self.implicit_graph_features = nn.Linear(dim, num_types, bias=False)
@@ -146,13 +130,12 @@ class Predictor(nn.Module):
     def forward(self, user_embeddings, embeddings, enc_output, slf_attn_mask):
         outputs = []
         if C.ABLATION != 'w/oMatcher':
-            out = user_embeddings.matmul(embeddings.T[:,1:])
+            out = user_embeddings.matmul(embeddings.T[:, 1:])
             out = F.normalize(out, p=2, dim=-1, eps=1e-05)
             outputs.append(out)
 
         if C.ABLATION != 'w/oImFe':
 
-            # if C.ABLATION != "w/oGraIm":
             if C.ABLATION != "w/oGraIm":
                 if not (C.ENCODER == "Transformer" and C.DATASET == 'Yelp2018'):
                     # graph implicit
@@ -182,54 +165,19 @@ class Predictor(nn.Module):
         return out
 
 
-class RNN_layers(nn.Module):
-    """
-    Optional recurrent layers. This is inspired by the fact that adding
-    recurrent layers on top of the Transformer helps language modeling.
-    """
-
-    def __init__(self, d_model, d_rnn):
-        super().__init__()
-
-        # self.rnn = nn.LSTM(d_model, d_rnn, num_layers=1, batch_first=True)
-        self.rnn = nn.GRU(d_model, d_rnn, num_layers=1, batch_first=True)  # input_size: d_model, gate_size: 4 * d_rnn
-        self.projection = nn.Linear(d_rnn, d_model)  # in_features: int d_rnn, out_features: int d_model
-
-    def forward(self, data, non_pad_mask):
-
-        lengths = non_pad_mask.squeeze(2).long().sum(1).cpu()
-        pack_enc_output = nn.utils.rnn.pack_padded_sequence(
-            data, lengths, batch_first=True, enforce_sorted=False)
-        temp = self.rnn(pack_enc_output)[0]
-        out = nn.utils.rnn.pad_packed_sequence(temp, batch_first=True)[0]
-
-        out = self.projection(out)
-
-        return out
-
-
 class Model(nn.Module):
     def __init__(
             self,  # conf, training_set, test_set,
             num_types, d_model=256, n_layers=4, n_head=4, dropout=0.1, device=0):
         super(Model, self).__init__()
 
-        # event(POI) type embedding (23 512) (K M)
         self.event_emb = nn.Embedding(num_types+1, d_model, padding_idx=C.PAD)  # dding 0
-
-        # # set the embeddings of POI (index=0, PAD value) to being the vector fully filled in 0
-        # weight_ = self.event_emb.weight.detach()
-        # weight_[0] = 0
-        # self.event_emb = nn.Embedding(num_types+1, d_model, padding_idx=C.PAD, _weight=weight_).to('cuda:0')  # dding 0
 
         self.encoder = Encoder(
             num_types=num_types, d_model=d_model,
             n_layers=n_layers, n_head=n_head, dropout=dropout)
 
         self.num_types = num_types
-
-        # # OPTIONAL recurrent layer, this sometimes helps
-        # self.rnn = RNN_layers(d_model, d_rnn)
 
         self.predictor = Predictor(d_model, num_types)
 
@@ -253,9 +201,6 @@ class Model(nn.Module):
 
         user_embeddings = self.encoder(user_id, event_type, enc_output, slf_attn_mask, non_pad_mask)  # H(j,:)
 
-        # enc_output = self.rnn(enc_output, non_pad_mask)  # [16, 166, 512]
-
         prediction = self.predictor(user_embeddings, self.event_emb.weight, enc_output, slf_attn_mask)
-        # prediction = torch.squeeze(prediction, 1) * candidates
 
-        return prediction, user_embeddings  # , candidates_enc  # , mage_output,  phase_output
+        return prediction, user_embeddings

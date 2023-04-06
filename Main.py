@@ -25,7 +25,7 @@ def train_epoch(model, user_dl, optimizer, opt):
     """ Epoch operation in training phase. """
 
     model.train()
-    pre, rec, map_, ndcg = [[] for i in range(4)], [[] for i in range(4)], [[] for i in range(4)], [[] for i in range(4)]
+    [pre, rec, map_, ndcg] = [[[] for i in range(4)] for j in range(4)]
     for batch in tqdm(user_dl, mininterval=2, desc='  - (Training)   ', leave=False):
         optimizer.zero_grad()
 
@@ -39,24 +39,21 @@ def train_epoch(model, user_dl, optimizer, opt):
         metric.pre_rec_top(pre, rec, map_, ndcg, prediction, test_label, event_type)
 
         """ backward """
-        loss = Utils.type_loss(prediction, event_type, event_time, test_label, opt.smooth)
+        loss = Utils.type_loss(prediction, event_type, event_time, test_label, opt)
 
         loss.backward(retain_graph=True)
         """ update parameters """
         optimizer.step()
 
-    pre_np, rec_np, map_np, ndcg_np = np.zeros(4), np.zeros(4), np.zeros(4), np.zeros(4)
-    for i in range(4):
-        pre_np[i], rec_np[i], map_np[i], ndcg_np[i] = np.mean(pre[i]), np.mean(rec[i]), np.mean(map_[i]), np.mean(ndcg[i])
-
-    return pre_np, rec_np, map_np, ndcg_np
+    results_np = map(lambda x: [np.around(np.mean(i), 5) for i in x], [pre, rec, map_, ndcg])
+    return results_np
 
 
 def eval_epoch(model, user_valid_dl, opt):
     """ Epoch operation in evaluation phase. """
 
     model.eval()
-    pre, rec, map_, ndcg = [[] for i in range(4)], [[] for i in range(4)], [[] for i in range(4)], [[] for i in range(4)]
+    [pre, rec, map_, ndcg] = [[[] for i in range(4)] for j in range(4)]
     with torch.no_grad():
         for batch in tqdm(user_valid_dl, mininterval=2,
                           desc='  - (Validation) ', leave=False):
@@ -69,46 +66,43 @@ def eval_epoch(model, user_valid_dl, opt):
             """ compute metric """
             metric.pre_rec_top(pre, rec, map_, ndcg, prediction, test_label, event_type)
 
-    pre_np, rec_np, map_np, ndcg_np = np.zeros(4), np.zeros(4), np.zeros(4), np.zeros(4)
-    for i in range(4):
-        pre_np[i], rec_np[i], map_np[i], ndcg_np[i] = np.mean(pre[i]), np.mean(rec[i]), np.mean(map_[i]), np.mean(ndcg[i])
-
-    return pre_np, rec_np, map_np, ndcg_np
+    results_np = map(lambda x: [np.around(np.mean(i), 5) for i in x], [pre, rec, map_, ndcg])
+    return results_np
 
 
 def train(model, data, optimizer, scheduler, opt):
     """ Start training. """
-
-    valid_precision_max = 0.0
-
     (user_valid_dl, user_dl) = data
-    for epoch_i in range(opt.epoch):
-        epoch = epoch_i + 1
-        print('[ Epoch', epoch, ']')
 
-        valid_user_embeddings = torch.zeros((C.USER_NUMBER, opt.d_model), device='cuda:0')
+    best_ = [np.zeros(4) for i in range(4)]
+    for epoch_i in range(opt.epoch):
+        print('[ Epoch', epoch_i + 1, ']')
 
         np.set_printoptions(formatter={'float': '{: 0.5f}'.format})
-        start = time.time()  # loglikelihood: {ll: 8.5f},
-        pre_np, rec_np, map_np, ndcg_np = train_epoch(model, user_dl, optimizer, opt)
+        start = time.time()
+        [pre, rec, map_, ndcg] = train_epoch(model, user_dl, optimizer, opt)
         print('\r(Training)  P@k:{pre},    R@k:{rec}, \n'
               '(Training)map@k:{map_}, ndcg@k:{ndcg}, '
               'elapse:{elapse:3.3f} min'
-              .format(elapse=(time.time() - start) / 60,
-                      pre=pre_np, rec=rec_np, map_=map_np, ndcg=ndcg_np))
+              .format(elapse=(time.time() - start) / 60, pre=pre, rec=rec, map_=map_, ndcg=ndcg))
 
         start = time.time()
-        pre_np, rec_np, map_np, ndcg_np = eval_epoch(model, user_valid_dl, opt, valid_user_embeddings)
+        [pre, rec, map_, ndcg] = eval_epoch(model, user_valid_dl, opt)
         print('\r(Test)  P@k:{pre},    R@k:{rec}, \n'
               '(Test)map@k:{map_}, ndcg@k:{ndcg}, '
               'elapse:{elapse:3.3f} min'
-              .format(elapse=(time.time() - start) / 60,
-                      pre=pre_np, rec=rec_np, map_=map_np, ndcg=ndcg_np))
+              .format(elapse=(time.time() - start) / 60, pre=pre, rec=rec, map_=map_, ndcg=ndcg))
 
         scheduler.step()
-        valid_precision_max = valid_precision_max if valid_precision_max > pre_np[1] else pre_np[1]
 
-    return valid_precision_max
+        if best_[-1][1] < ndcg[1]: best_ = [pre, rec, map_, ndcg]
+
+    with open('./result/beta_lambda_{}.log'.format(C.DATASET), 'a') as f:
+        f.write("%s Beta:%.4f Lambda:%.4f " % (C.DATASET, opt.lambda_, opt.delta))
+        f.write("P@k:{pre}, R@k:{rec}, {map_}, ndcg@k:{ndcg}\n"
+                .format(pre=best_[0], rec=best_[1], map_=best_[2], ndcg=best_[3]))
+        f.close()
+    return best_[-1][1]
 
 
 def get_user_embeddings(model, user_dl, opt):
@@ -153,6 +147,19 @@ def main(trial):
     else: opt.d_model, opt.n_head = 1024, 1
     print('[Info] parameters: {}'.format(opt))
 
+    lambda_delta = {
+        'Foursquare': [0.4, 0.7], # 0.4, 0.5  # 0.35, 0.5  # 0.5, 1
+        'Gowalla': [1.5, 4],  # 0.38, 1  # 1.5, 4
+        'Yelp2018': [1, 4],  # 0.35, 1  # 1, 4
+        'douban-book': [0.5, 1],
+        'Yelp': [1, 2.4],  # 0.2, 0.3  # 0.5, 1.2
+    }
+
+    if C.DATASET in lambda_delta:
+        [opt.lambda_, opt.delta] = lambda_delta[C.DATASET]
+    else:
+        opt.lambda_, opt.delta = trial.suggest_uniform('lambda', 0.1, 4), trial.suggest_uniform('delta', 0.1, 4)
+
     """ prepare model """
     model = Model(
         num_types=C.POI_NUMBER,
@@ -172,15 +179,9 @@ def main(trial):
     data = (user_valid_dl, user_dl)
 
     """ optimizer and scheduler """
-    parameters = [
-                  {'params': model.parameters(), 'lr': opt.lr},
-                  ]
+    parameters = [{'params': model.parameters(), 'lr': opt.lr},]
     optimizer = torch.optim.Adam(parameters)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.5)
-
-    # """ number of parameters """
-    # num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    # print('[Info] Number of parameters: {}'.format(num_params))
 
     """ train the model """
     return train(model, data, optimizer, scheduler, opt)

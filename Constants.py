@@ -1,13 +1,8 @@
 PAD = 0
 
-# Yelp2018  Gowalla  Foursquare  Yelp ml-1M douban-book
-DATASET = "Yelp2018"
-# hGCN  Transformer  TransformerLS  gMLP  None
-ENCODER = 'hGCN'
-# Full  w/oImFe  w/oMMD  w/oMatcher w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
-# Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
-ABLATION = 'Full'
-
+DATASET = "Yelp2018"  # Yelp2018  Gowalla  Foursquare  Yelp ml-1M douban-book
+ENCODER = 'hGCN'  # hGCN  Transformer  TransformerLS  gMLP
+ABLATION = 'Full'  # Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
 COLD_START = True  # True, False
 
 user_dict = {

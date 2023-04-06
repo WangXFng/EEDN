@@ -1,4 +1,4 @@
-## EEDN EEDN: Enhanced Encoder-Decoder Network with Local and Global Context Learning for POI Recommendation (SIGIR 2023)
+## EEDN (SIGIR 2023)
 
 ### Run (Configures are given by Constants.py and Main.py)
 > python Main.py

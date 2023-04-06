@@ -10,6 +10,7 @@
 * If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
 * If you have any problem, please contact me by kaysenn@163.com.
 
+
 ### Dependencies
 * Python 3.7.6
 * [Anaconda](https://www.anaconda.com/) 4.8.2 contains all the required packages.
@@ -65,3 +66,5 @@
 </table>
 
 
+### Acknowledge
+Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.

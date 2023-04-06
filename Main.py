@@ -1,7 +1,7 @@
 import argparse
 import numpy as np
 import time
-import metric
+from EEDN import metric, Utils
 
 import torch
 import torch.optim as optim
@@ -14,10 +14,9 @@ else:
 import optuna
 
 import Constants as C
-import Utils
 
 from preprocess.Dataset import Dataset as dataset
-from Models import Model
+from EEDN.Models import Model
 from tqdm import tqdm
 
 

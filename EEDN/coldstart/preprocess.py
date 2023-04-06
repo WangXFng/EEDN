@@ -1,5 +1,5 @@
 import sys
-sys.path.append("..")
+sys.path.append("../..")
 import Constants as C
 import numpy as np
 import os

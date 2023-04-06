@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch.nn.functional as F
 
-from transformer.Modules import ScaledDotProductAttention
+from EEDN.transformer.Modules import ScaledDotProductAttention
 
 
 class MultiHeadAttention(nn.Module):

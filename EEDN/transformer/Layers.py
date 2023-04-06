@@ -1,9 +1,6 @@
 import torch.nn as nn
-import torch
 
-from transformer.SubLayers import MultiHeadAttention, PositionwiseFeedForward
-
-import argparse
+from EEDN.transformer.SubLayers import MultiHeadAttention, PositionwiseFeedForward
 
 
 class EncoderLayer(nn.Module):

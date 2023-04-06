@@ -5,10 +5,10 @@ import numpy as np
 
 import os
 from Utils import *
-from gMLP.gmlp import gMLP
-from hGCN.hGCN import hGCNEncoder
-from transformer.Layers import EncoderLayer
-from transformerls.lstransformer import TransformerLS
+from EEDN.gMLP.gmlp import gMLP
+from EEDN.hGCN.hGCN import hGCNEncoder
+from EEDN.transformer.Layers import EncoderLayer
+from EEDN.transformerls.lstransformer import TransformerLS
 from preprocess.cal_poi_pairwise import read_interaction
 
 

@@ -2,7 +2,7 @@ import os
 import torch
 import numpy as np
 import Constants as C
-from coldstart.preprocess import select_cold_start_users
+from EEDN.coldstart.preprocess import select_cold_start_users
 if torch.cuda.is_available():
     import torch.cuda as T
 else:

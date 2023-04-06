@@ -1,8 +1,4 @@
-import torch
-import torch.nn as nn
-
-
-from transformerls.attentionls import *
+from EEDN.transformerls.attentionls import *
 
 
 class TransformerLS(nn.Module):

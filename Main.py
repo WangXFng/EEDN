@@ -126,7 +126,7 @@ def main(trial):
     opt = parser.parse_args()
     opt.device = torch.device('cuda')
 
-    # optuna setting for tuning hyperparameters
+    # >> optuna setting for tuning hyperparameters
     # opt.n_layers = trial.suggest_int('n_layers', 2, 2)
     # opt.n_head = trial.suggest_int('n_head', 1, 5, 1)
     # opt.d_model = trial.suggest_int('d_model', 128, 1024, 128)
@@ -187,7 +187,7 @@ def main(trial):
 
 
 if __name__ == '__main__':
-    assert C.ENCODER in {'Transformer', 'gMLP', 'TransformerLS', 'hGCN', 'None'}
+    assert C.ENCODER in {'Transformer', 'gMLP', 'TransformerLS', 'hGCN'}
     assert C.ABLATION in {'Full', 'w/oImFe', 'w/oFeTra', 'w/oGlobal', 'w/oAtt', 'w/oConv', 'w/oGraIm'}
     study = optuna.create_study(direction="maximize")
     study.optimize(main, n_trials=100)

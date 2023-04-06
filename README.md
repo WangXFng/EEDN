@@ -9,7 +9,6 @@
 
 ### Dependencies
 * Python 3.7.6
-* [Anaconda](https://www.anaconda.com/) 4.8.2 contains all the required packages.
 * [PyTorch](https://pytorch.org/) version 1.7.1.
 
 

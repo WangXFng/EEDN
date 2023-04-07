@@ -9,10 +9,6 @@
 * If you have any problem, please feel free to contact me by kaysenn@163.com.
 
 
-### Acknowledge
-Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
-
-
 ### Dependencies
 * Python 3.7.6
 * [PyTorch](https://pytorch.org/) version 1.7.1.
@@ -41,6 +37,8 @@ Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many ava
 * [CPIR](https://repository.kaust.edu.sa/bitstream/handle/10754/667564/Conference%20Paperfile1.pdf?sequence=1) IJCAI'2020
 * [ENMF](https://github.com/chenchongthu/ENMF) TOIS'2020
 * [SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
+
+Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
 
 ### Results (The state-of-the-art performance on five real-world datasets)
 

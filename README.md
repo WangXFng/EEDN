@@ -4,6 +4,15 @@
 > python Main.py
 
 
+### Note
+* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
+* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
+* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
+* If you have any problem, please contact me by kaysenn@163.com.
+
+
+### Acknowledge
+Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
 
 
 
@@ -59,12 +68,3 @@
     <tr><td>NDCG@20 </td><td>0.0277</td><td>0.0484</td><td>0.0549</td><td>0.0501</td><td>0.0589</td><td>0.0558</td><td>0.0601</td><td><b>0.0639</b> </td><td>+6.3%</td></tr>
 </table>
 
-### Note
-* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
-* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
-* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
-* If you have any problem, please contact me by kaysenn@163.com.
-
-
-### Acknowledge
-Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.

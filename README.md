@@ -17,12 +17,12 @@ ___
 
 ### Datasets
 <table>
-	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> </tr>
-	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> </tr>
-	<tr> <td> Gowalla</td> <td> 18,737</td> <td> 32,510</td> </tr>
-	<tr> <td> Foursquare</td> <td> 7,642</td> <td> 28,483</td> </tr>
-	<tr> <td> Yelp challenge round 7</td> <td> 30,887</td> <td> 18,995</td> </tr>
-	<tr> <td> Yelp2018</td> <td> 31,668</td> <td> 38,048</td> </tr>
+	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> <td> **$\lambda$**</td> <td> **$\delta$**</td> </tr>
+	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> <td> 0.5</td> <td> 1 </td> </tr>
+	<tr> <td> Gowalla</td> <td> 18,737</td> <td> 32,510</td> <td> 1.5 </td> <td> 4 </td> </tr>
+	<tr> <td> Foursquare</td> <td> 7,642</td> <td> 28,483</td> <td> 0.4</td> <td> 0.7 </td></tr>
+	<tr> <td> Yelp challenge round 7</td> <td> 30,887</td> <td> 18,995</td> <td> 1</td> <td> 2.4 </td></tr>
+	<tr> <td> Yelp2018</td> <td> 31,668</td> <td> 38,048</td> <td> 1</td> <td> 4 </td></tr>
 </table>
 
 

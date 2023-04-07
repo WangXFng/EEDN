@@ -2,9 +2,9 @@
 
 ### Run
 
-> python Main.py
+	python Main.py
 
-----
+--------
 
 ### Dependencies
 * Python 3.7.6
@@ -16,7 +16,7 @@
 * When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
 * If you have any problem, please feel free to contact me by kaysenn@163.com.
 
----
+--------
 
 ### Datasets
 <table>

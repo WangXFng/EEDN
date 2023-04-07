@@ -29,10 +29,10 @@ def train_epoch(model, user_dl, optimizer, opt):
         optimizer.zero_grad()
 
         """ prepare data """
-        user_idx, event_type, event_time, test_label = map(lambda x: x.to(opt.device), batch)
+        event_type, event_time, test_label = map(lambda x: x.to(opt.device), batch)
 
         """ forward """
-        prediction, users_embeddings = model(user_idx, event_type)
+        prediction, users_embeddings = model(event_type)
 
         """ compute metric """
         metric.pre_rec_top(pre, rec, map_, ndcg, prediction, test_label, event_type)
@@ -57,10 +57,10 @@ def eval_epoch(model, user_valid_dl, opt):
         for batch in tqdm(user_valid_dl, mininterval=2,
                           desc='  - (Validation) ', leave=False):
             """ prepare test data """
-            user_idx, event_type, event_time, test_label = map(lambda x: x.to(opt.device), batch)
+            event_type, event_time, test_label = map(lambda x: x.to(opt.device), batch)
 
             """ forward """
-            prediction, users_embeddings = model(user_idx, event_type)  # X = (UY+Z) ^ T
+            prediction, users_embeddings = model(event_type)  # X = (UY+Z) ^ T
 
             """ compute metric """
             metric.pre_rec_top(pre, rec, map_, ndcg, prediction, test_label, event_type)

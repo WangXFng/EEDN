@@ -1,7 +1,6 @@
-import scipy.sparse as sp
-import torch.nn
-import torch.nn as nn
 import numpy as np
+import torch.nn as nn
+import scipy.sparse as sp
 
 import os
 from Utils import *
@@ -10,7 +9,6 @@ from EEDN.hGCN.hGCN import hGCNEncoder
 from EEDN.transformer.Layers import EncoderLayer
 from EEDN.transformerls.lstransformer import TransformerLS
 from preprocess.cal_poi_pairwise import read_interaction
-
 
 
 class Encoder(nn.Module):
@@ -52,7 +50,7 @@ class Encoder(nn.Module):
         if C.ENCODER == 'None':
             self.user_emb = torch.nn.Embedding(C.USER_NUMBER, d_model, padding_idx=C.PAD)
 
-    def forward(self, user_id, event_type, enc_output, slf_attn_mask, non_pad_mask):
+    def forward(self, event_type, enc_output, slf_attn_mask, non_pad_mask):
         """ Encode event sequences via masked self-attention. """
         if C.ENCODER == 'Transformer':
 
@@ -167,28 +165,18 @@ class Predictor(nn.Module):
 
 class Model(nn.Module):
     def __init__(
-            self,  # conf, training_set, test_set,
-            num_types, d_model=256, n_layers=4, n_head=4, dropout=0.1, device=0):
+            self,  num_types, d_model=256, n_layers=4, n_head=4, dropout=0.1, device=0):
         super(Model, self).__init__()
 
         self.event_emb = nn.Embedding(num_types+1, d_model, padding_idx=C.PAD)  # dding 0
-
         self.encoder = Encoder(
             num_types=num_types, d_model=d_model,
             n_layers=n_layers, n_head=n_head, dropout=dropout)
 
         self.num_types = num_types
-
         self.predictor = Predictor(d_model, num_types)
 
-    def forward(self, user_id, event_type):
-        """
-        Return the hidden representations and predictions.
-        For a sequence (l_1, l_2, ..., l_N), we predict (l_2, ..., l_N, l_{N+1}).
-        Input: event_type: batch*seq_len.
-        Output: enc_output: batch*seq_len*model_dim;
-                user_embeddings: batch.
-        """
+    def forward(self, event_type):
         slf_attn_mask_subseq = get_subsequent_mask(event_type)  # M * L * L
         slf_attn_mask_keypad = get_attn_key_pad_mask(seq_k=event_type, seq_q=event_type)  # M x lq x lk
         slf_attn_mask_keypad = slf_attn_mask_keypad.type_as(slf_attn_mask_subseq)
@@ -199,7 +187,7 @@ class Model(nn.Module):
         # (K M)  event_emb: Embedding
         enc_output = self.event_emb(event_type)
 
-        user_embeddings = self.encoder(user_id, event_type, enc_output, slf_attn_mask, non_pad_mask)  # H(j,:)
+        user_embeddings = self.encoder(event_type, enc_output, slf_attn_mask, non_pad_mask)  # H(j,:)
 
         prediction = self.predictor(user_embeddings, self.event_emb.weight, enc_output, slf_attn_mask)
 

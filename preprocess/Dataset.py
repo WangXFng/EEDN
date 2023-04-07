@@ -45,7 +45,7 @@ class Dataset(object):
                 dict_[i] = 1
 
         for i in range(self.user_num):
-            user_data.append((i, self.training_user[i], self.tuning_times[i], self.tuning_user[i], ), )
+            user_data.append((self.training_user[i], self.tuning_times[i], self.tuning_user[i], ), )
             if C.COLD_START:
                 if i not in dict_:
                     continue
@@ -89,12 +89,11 @@ class Dataset(object):
 
     def user_fn(self, insts):
         """ Collate function, as required by PyTorch. """
-        (idx, event_type, event_time, test_label) = list(zip(*insts))
-        idx = torch.tensor(idx, device='cuda:0')
+        (event_type, event_time, test_label) = list(zip(*insts))
         event_type = self.paddingLong2D(event_type)
         event_time = self.paddingLong2D(event_time)
         test_label = self.paddingLong2D(test_label)
-        return idx, event_type, event_time, test_label
+        return event_type, event_time, test_label
 
     def get_user_dl(self, batch_size):
         user_dl = torch.utils.data.DataLoader(

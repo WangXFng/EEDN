@@ -31,16 +31,16 @@ Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many ava
 
 
 ### Baselines
-[SimGCL](https://github.com/Coder-Yu/QRec) SIGIR'2022
-[NCL](https://github.com/RUCAIBox/NCL) WWW'2022
-[DirectAU](https://github.com/THUwangcy/DirectAU) KDD'2022
-[STaTRL](https://github.com/WangXFng/STaTRL) APIN'2022
-[SGL](https://github.com/wujcan/SGL-TensorFlow) SIGIR'2021
-[SEPT](https://github.com/Coder-Yu/QRec) KDD'2021
-[LightGCN](https://github.com/gusye1234/LightGCN-PyTorch) SIGIR'2020
-[CPIR](https://repository.kaust.edu.sa/bitstream/handle/10754/667564/Conference%20Paperfile1.pdf?sequence=1) IJCAI'2020
-[ENMF](https://github.com/chenchongthu/ENMF) TOIS'2020
-[SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
+* [SimGCL](https://github.com/Coder-Yu/QRec) SIGIR'2022
+* [NCL](https://github.com/RUCAIBox/NCL) WWW'2022
+* [DirectAU](https://github.com/THUwangcy/DirectAU) KDD'2022
+* [STaTRL](https://github.com/WangXFng/STaTRL) APIN'2022
+* [SGL](https://github.com/wujcan/SGL-TensorFlow) SIGIR'2021
+* [SEPT](https://github.com/Coder-Yu/QRec) KDD'2021
+* [LightGCN](https://github.com/gusye1234/LightGCN-PyTorch) SIGIR'2020
+* [CPIR](https://repository.kaust.edu.sa/bitstream/handle/10754/667564/Conference%20Paperfile1.pdf?sequence=1) IJCAI'2020
+* [ENMF](https://github.com/chenchongthu/ENMF) TOIS'2020
+* [SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
 
 ### Results (The state-of-the-art performance on five real-world datasets)
 

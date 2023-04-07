@@ -1,6 +1,7 @@
 ## EEDN (SIGIR 2023)
 
-### Run (Configures are given by Constants.py and Main.py)
+### Run 
+## Configures are given by Constants.py and Main.py
 > python Main.py
 
 ### Dependencies
@@ -38,7 +39,7 @@
 
 Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
 
-### Results (The state-of-the-art performance on five real-world datasets)
+### Results
 
 <table>
 	<tr><th></th><th></th><th>CIKM'18</th><th>SIGIR'20</th><th>SIGIR'21</th><th>APIN'22</th><th>KDD'22</th><th>WWW'22</th><th>SIGIR'22</th><th></th><th></th></tr>

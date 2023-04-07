@@ -10,10 +10,10 @@ ___
 * [PyTorch](https://pytorch.org/) version 1.7.1.
 
 ### Note
-* Configures are given by Constants.py and Main.py
-* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
-* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
-* If you have any problem, please feel free to contact me by kaysenn@163.com.
+	* Configures are given by Constants.py and Main.py
+	* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
+	* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
+	* If you have any problem, please feel free to contact me by kaysenn@163.com.
 ___
 
 ### Datasets

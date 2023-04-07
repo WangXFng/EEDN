@@ -1,8 +1,10 @@
 ## EEDN (SIGIR 2023)
 
 ### Run 
-#### Configures are given by Constants.py and Main.py
+
 > python Main.py
+##### Configures are given by Constants.py and Main.py
+
 
 ### Dependencies
 * Python 3.7.6

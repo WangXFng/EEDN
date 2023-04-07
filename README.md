@@ -3,17 +3,14 @@
 ### Run (Configures are given by Constants.py and Main.py)
 > python Main.py
 
-
 ### Note
 * As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons.
 * When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune the these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (line.162)
-* If the memory of your GPU server is less than 24G, please small the embedding size in Main.py (line.145-148).
-* If you have any problem, please contact me by kaysenn@163.com.
+* If you have any problem, please feel free to contact me by kaysenn@163.com.
 
 
 ### Acknowledge
 Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
-
 
 
 ### Dependencies
@@ -30,6 +27,20 @@ Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many ava
 	<tr> <td> Yelp challenge round 7</td> <td> 30,887</td> <td> 18,995</td> </tr>
 	<tr> <td> Yelp2018</td> <td> 31,668</td> <td> 38,048</td> </tr>
 </table>
+
+
+
+### Baselines
+[SimGCL](https://github.com/Coder-Yu/QRec) SIGIR'2022
+[NCL](https://github.com/RUCAIBox/NCL) WWW'2022
+[DirectAU](https://github.com/THUwangcy/DirectAU) KDD'2022
+[STaTRL](https://github.com/WangXFng/STaTRL) APIN'2022
+[SGL](https://github.com/wujcan/SGL-TensorFlow) SIGIR'2021
+[SEPT](https://github.com/Coder-Yu/QRec) KDD'2021
+[LightGCN](https://github.com/gusye1234/LightGCN-PyTorch) SIGIR'2020
+[CPIR](https://repository.kaust.edu.sa/bitstream/handle/10754/667564/Conference%20Paperfile1.pdf?sequence=1) IJCAI'2020
+[ENMF](https://github.com/chenchongthu/ENMF) TOIS'2020
+[SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
 
 ### Results (The state-of-the-art performance on five real-world datasets)
 

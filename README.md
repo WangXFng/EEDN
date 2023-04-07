@@ -40,4 +40,4 @@ ___
 * [SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
 
 ### Acknowledge
-Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines.
+Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines, and kindly released.

@@ -40,15 +40,14 @@ class Dataset(object):
                 print('Generating cold-start users ...')
                 select_cold_start_users()
             cold_start_useridx_npy = np.load(self.directory_path + 'cold_start_useridx.npy')
-            dict_ = {}  # to check if it is a cold start user with time complexity of O(n)
-            for i in cold_start_useridx_npy:
-                dict_[i] = 1
+            dict_ = dict([(key, 1) for key in cold_start_useridx_npy])  # to check if it is a cold start user
+            # for i in cold_start_useridx_npy:
+            #     dict_[i] = 1
 
         for i in range(self.user_num):
             user_data.append((self.training_user[i], self.tuning_times[i], self.tuning_user[i], ), )
-            if C.COLD_START:
-                if i not in dict_:
-                    continue
+            if C.COLD_START and i not in dict_:  # time complexity of O(1)
+                continue
             valid_input = self.training_user[i].copy()
             valid_input.extend(self.tuning_user[i])
             valid_times = self.training_times[i].copy()

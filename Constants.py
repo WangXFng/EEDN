@@ -1,7 +1,7 @@
 DATASET = "Yelp2018"  # Yelp2018  Gowalla  Foursquare  Yelp douban-book
 ENCODER = 'hGCN'  # hGCN  Transformer  TransformerLS  gMLP
 ABLATION = 'Full'  # Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
-COLD_START = True  # True, False
+COLD_START = False  # True, False
 
 user_dict = {
     'Yelp': 30887,

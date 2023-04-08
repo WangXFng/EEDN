@@ -1,4 +1,5 @@
-## EEDN (SIGIR 2023)
+## EEDN (SIGIR 2023) 
+#### we will open the citation as soon as possible.
 
 ### Run
 

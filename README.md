@@ -1,4 +1,4 @@
-## EEDN (SIGIR'23) 
+## EEDN (SIGIR'23 Full paper) 
 	We will release the paper and citation as soon as possible. Please wait.
 
 ### Run

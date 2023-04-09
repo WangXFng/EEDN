@@ -47,13 +47,9 @@ class Encoder(nn.Module):
                 TransformerLS(d_model, n_head, dropout)
                 for _ in range(n_layers)])
 
-        if C.ENCODER == 'None':
-            self.user_emb = torch.nn.Embedding(C.USER_NUMBER, d_model, padding_idx=C.PAD)
-
     def forward(self, event_type, enc_output, slf_attn_mask, non_pad_mask):
         """ Encode event sequences via masked self-attention. """
         if C.ENCODER == 'Transformer':
-
             for enc_layer in self.layer_stack:
                 residual = enc_output
                 enc_output, _ = enc_layer(

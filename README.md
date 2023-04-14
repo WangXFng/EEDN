@@ -1,5 +1,5 @@
 ## EEDN (SIGIR'23) 
-	The paper can be found in /paper for reading only. DO NOT distribute it until it's published by ACM SIGIR.
+	The paper can be found in /paper for **reading only**. **DO NOT** distribute it until it's published by ACM SIGIR.
 
 ### Run
 	python Main.py

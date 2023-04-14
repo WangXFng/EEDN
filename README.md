@@ -39,6 +39,7 @@ ___
 * [SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
 
 ### Citation
+If this repository helps you, please cite:
 	@inproceedings{wang2023eedn,
 	  title={EEDN: Enhanced Encoder-Decoder Network with Local and Global Interactions for POI Recommendation},
 	  author={Xinfeng, Wang and Fumiyo, Fukumoto and Jin, Cui and Yoshimi, Suzuki and Jiyi, Li and Dongjin, Yu},

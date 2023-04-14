@@ -1,5 +1,5 @@
 ## EEDN (SIGIR'23) 
-	We will release the paper and citation as soon as possible. Please wait.
+	The paper can be found in /paper for reading only. DO NOT distribute it until it's published by ACM SIGIR.
 
 ### Run
 
@@ -27,7 +27,6 @@ ___
 </table>
 
 
-
 ### Baselines
 * [SimGCL](https://github.com/Coder-Yu/QRec) SIGIR'2022
 * [NCL](https://github.com/RUCAIBox/NCL) WWW'2022
@@ -39,6 +38,14 @@ ___
 * [CPIR](https://repository.kaust.edu.sa/bitstream/handle/10754/667564/Conference%20Paperfile1.pdf?sequence=1) IJCAI'2020
 * [ENMF](https://github.com/chenchongthu/ENMF) TOIS'2020
 * [SAE-NAD](https://github.com/allenjack/SAE-NAD) CIKM'2018
+
+### Citation
+	@inproceedings{wang2023eedn,
+	  title={EEDN: Enhanced Encoder-Decoder Network with Local and Global Interactions for POI Recommendation},
+	  author={Xinfeng, Wang and Fumiyo, Fukumoto and Jin, Cui and Yoshimi, Suzuki and Jiyi, Li and Dongjin, Yu},
+	  booktitle={Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+	  year={2023}
+	}
 
 ### Acknowledge
 Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines, and kindly released.

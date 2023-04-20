@@ -1,10 +1,11 @@
-DATASET = "Yelp2018"  # Yelp2018  Gowalla  Foursquare  Yelp douban-book
+DATASET = "ml-1M"  # Yelp2018  Gowalla  Foursquare  Yelp douban-book
 ENCODER = 'hGCN'  # hGCN  Transformer  TransformerLS  gMLP
 ABLATION = 'Full'  # Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
 COLD_START = False  # True, False
 
 user_dict = {
     'Yelp': 30887,
+    'ml-1M': 6038,  # 3533
     'douban-book': 12859,
     'Gowalla': 18737,
     'Yelp2018': 31668,
@@ -13,6 +14,7 @@ user_dict = {
 
 poi_dict = {
     'Yelp': 18995,
+    'ml-1M': 3533,  # 3629
     'douban-book': 22294,
     'Gowalla': 32510,
     'Yelp2018': 38048,

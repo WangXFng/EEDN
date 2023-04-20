@@ -52,7 +52,7 @@ class Dataset(object):
             valid_input.extend(self.tuning_user[i])
             valid_times = self.training_times[i].copy()
             valid_times.extend(self.tuning_times[i])
-            user_valid.append((i, valid_input, valid_times, self.test_user[i], ), )
+            user_valid.append((valid_input, valid_times, self.test_user[i], ), )
 
         if C.COLD_START:
             print('#User for Cold-Start', len(user_valid))

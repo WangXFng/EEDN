@@ -43,7 +43,7 @@ If this repository helps you, please cite:
 
 	@inproceedings{wang2023eedn,
 	  title={EEDN: Enhanced Encoder-Decoder Network with Local and Global Interactions for POI Recommendation},
-	  author={Xinfeng, Wang and Fumiyo, Fukumoto and Jin, Cui and Yoshimi, Suzuki and Jiyi, Li and Dongjin, Yu},
+	  author={Wang, Xinfeng and Fukumoto, Fumiyo and Cui, Jin and Suzuki, Yoshimi and Li, Jiyi and Yu, Dongjin},
 	  booktitle={Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval},
 	  year={2023}
 	}

@@ -1,4 +1,4 @@
-DATASET = "ml-1M"  # Yelp2018  Gowalla  Foursquare  Yelp douban-book
+DATASET = "Gowalla"  # Yelp2018  Gowalla  Foursquare  Yelp douban-book
 ENCODER = 'hGCN'  # hGCN  Transformer  TransformerLS  gMLP
 ABLATION = 'Full'  # Full  w/oImFe  w/oFeTra w/oGlobal w/oAtt w/oConv w/oGraIm
 COLD_START = False  # True, False

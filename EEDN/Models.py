@@ -100,7 +100,7 @@ class Encoder(nn.Module):
         return norm_adj_mat
 
 
-class Predictor(nn.Module):
+class Decoder(nn.Module):
     """ Prediction of next event type. """
 
     def __init__(self, dim, num_types):
@@ -170,7 +170,7 @@ class Model(nn.Module):
             n_layers=n_layers, n_head=n_head, dropout=dropout)
 
         self.num_types = num_types
-        self.predictor = Predictor(d_model, num_types)
+        self.decoder = Decoder(d_model, num_types)
 
     def forward(self, event_type):
         slf_attn_mask_subseq = get_subsequent_mask(event_type)  # M * L * L
@@ -185,6 +185,6 @@ class Model(nn.Module):
 
         user_embeddings = self.encoder(event_type, enc_output, slf_attn_mask, non_pad_mask)  # H(j,:)
 
-        prediction = self.predictor(user_embeddings, self.event_emb.weight, enc_output, slf_attn_mask)
+        prediction = self.decoder(user_embeddings, self.event_emb.weight, enc_output, slf_attn_mask)
 
         return prediction, user_embeddings

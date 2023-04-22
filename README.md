@@ -7,7 +7,7 @@
 
 ### Note
 * Configures are given by Constants.py and Main.py
-* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons, unless there is not enough GPU memories.
+* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons, unless there are not enough GPU memories.
 * When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (Line.160)
 * If you have any problem, please feel free to contact me by kaysenn@163.com.
 

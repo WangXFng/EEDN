@@ -144,7 +144,6 @@ def main(trial):
     elif C.DATASET == 'Gowalla': opt.d_model, opt.n_head = 1024, 1
     elif C.DATASET == 'Yelp2018': opt.d_model, opt.n_head = 1024, 2
     else: opt.d_model, opt.n_head = 1024, 1
-    print('[Info] parameters: {}'.format(opt))
 
     lambda_delta = {
         'Foursquare': [0.4, 0.7], # 0.4, 0.5  # 0.35, 0.5  # 0.5, 1
@@ -152,6 +151,7 @@ def main(trial):
         'Yelp2018': [1, 4],  # 0.35, 1  # 1, 4
         'douban-book': [0.5, 1],
         'Yelp': [1, 2.4],  # 0.2, 0.3  # 0.5, 1.2
+        'ml-1M': [0.9, 1],
     }
 
     if C.DATASET in lambda_delta:
@@ -159,6 +159,7 @@ def main(trial):
     else:
         opt.lambda_, opt.delta = trial.suggest_uniform('lambda', 0.1, 4), trial.suggest_uniform('delta', 0.1, 4)
 
+    print('[Info] parameters: {}'.format(opt))
     """ prepare model """
     model = Model(
         num_types=C.POI_NUMBER,

@@ -17,6 +17,9 @@
 ___
 
 ### Datasets
+Format (train.txt, tune.txt, test.txt):
+	USER_ID \t POI_ID \t TIMES
+
 <table>
 	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> <td> lambda</td> <td> delta </td> </tr>
 	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> <td> 0.5</td> <td> 1 </td> </tr>

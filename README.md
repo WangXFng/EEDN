@@ -17,7 +17,7 @@
 ___
 
 ### Datasets
-	Format (train.txt, tune.txt, test.txt):
+##### Format (in train.txt, tune.txt, and test.txt):
 	USER_ID \t POI_ID \t TIMES
 
 <table>

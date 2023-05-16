@@ -1,6 +1,6 @@
 ## EEDN (SIGIR'23) 
-	The paper can be found in /paper for reading only. 
-	DO NOT distribute it until it's published by ACM SIGIR around July 15th.
+	The paper can be found in /paper for read-only. 
+	DO NOT distribute it until it's published by ACM SIGIR around July 15th 2023.
 
 ### Run
 	python Main.py
@@ -17,6 +17,9 @@
 ___
 
 ### Datasets
+##### Format (in train.txt, tune.txt, and test.txt):
+	USER_ID \t POI_ID \t TIMES
+
 <table>
 	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> <td> lambda</td> <td> delta </td> </tr>
 	<tr> <td> Douban-book</td> <td> 12,859</td> <td> 22,294</td> <td> 0.5</td> <td> 1 </td> </tr>

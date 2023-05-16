@@ -150,7 +150,6 @@ def main(trial):
         'Gowalla': [1.5, 4],  # 0.38, 1  # 1.5, 4
         'Yelp2018': [1, 4],  # 0.35, 1  # 1, 4
         'douban-book': [0.5, 1],
-        'Yelp': [1, 2.4],  # 0.2, 0.3  # 0.5, 1.2
         'ml-1M': [0.9, 1],
     }
 
@@ -158,6 +157,7 @@ def main(trial):
         [opt.lambda_, opt.delta] = lambda_delta[C.DATASET]
     else:
         opt.lambda_, opt.delta = trial.suggest_uniform('lambda', 0.1, 4), trial.suggest_uniform('delta', 0.1, 4)
+        # opt.lambda_, opt.delta = 0.5, 1
 
     print('[Info] parameters: {}'.format(opt))
     """ prepare model """

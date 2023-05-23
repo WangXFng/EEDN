@@ -17,8 +17,19 @@
 ___
 
 ### Datasets
-##### Format (in train.txt, tune.txt, and test.txt):
-	USER_ID \t POI_ID \t TIMES
+	Three files are required: train.txt (for training), tune.txt (for tuning), and test.txt (for testing).
+	Each line denotes a interaction including a user visited a POI at times.
+	The format is [#USER_ID]\t[#POI_ID]\t[#TIMES]\n, which is the same for all files.
+	For example,
+	0	0	1
+	0	1	3
+	0	3	2
+	1	2	1
+	the user (ID=0) visited the POI (ID=0) at 1 times, 
+				  the POI (ID=1) at 3 times, 
+				  and the POI (ID=3) at 2 times.
+	the user (ID=1) visited the POI (ID=2) at 1 times.
+
 
 <table>
 	<tr> <td> Dataset</td> <td> #Users</td> <td> #Items</td> <td> lambda</td> <td> delta </td> </tr>

@@ -59,7 +59,7 @@ def read_interaction(train_data=None, directory_path=None):
     print(interaction_matrix.size())
     for eachline in train_data:
         uid, lid, timestamp = eachline.strip().split()
-        uid, lid, timestamp = int(uid), int(lid), int(timestamp)
+        uid, lid, timestamp = int(uid), int(lid) - 1, int(timestamp)
         # print(uid, lid)
         interaction_matrix[uid][lid] = 1
         count += 1

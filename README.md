@@ -1,6 +1,5 @@
 ## EEDN (SIGIR'23) 
-	The paper can be found in /paper for read-only. 
-	DO NOT distribute it until it's published by ACM SIGIR around July 23th 2023.
+	The paper can be found in /paper or [ACM SIGIR](https://dl.acm.org/doi/10.1145/3539618.3591678).
 
 ### Run
 	python Main.py

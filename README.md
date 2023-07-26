@@ -56,11 +56,11 @@ ___
 If this repository helps you, please cite:
 
 	@inproceedings{wang2023eedn,
-	  title={EEDN: Enhanced Encoder-Decoder Network with Local and Global Interactions for POI Recommendation},
+	  title={EEDN: Enhanced Encoder-Decoder Network with Local and Global Context Learning for POI Recommendation},
 	  author={Wang, Xinfeng and Fukumoto, Fumiyo and Cui, Jin and Suzuki, Yoshimi and Li, Jiyi and Yu, Dongjin},
 	  booktitle={Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+	  pages={383--392},
 	  year={2023}
 	}
-
 ### Acknowledge
 Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines, and kindly released.

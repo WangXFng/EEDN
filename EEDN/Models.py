@@ -3,7 +3,7 @@ import torch.nn as nn
 import scipy.sparse as sp
 
 import os
-from Utils import *
+from EEDN.Utils import *
 from EEDN.gMLP.gmlp import gMLP
 from EEDN.hGCN.hGCN import hGCNEncoder
 from EEDN.transformer.Layers import EncoderLayer

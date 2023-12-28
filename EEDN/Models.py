@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 import torch.nn as nn
 import scipy.sparse as sp
 
@@ -23,12 +24,12 @@ class Encoder(nn.Module):
 
         if C.ENCODER == 'hGCN':
             directory_path = './data/{dataset}/'.format(dataset=C.DATASET)
-            train_file = 'poi_matrix.npy'
-            if not os.path.exists(directory_path + train_file):
+            poi_matrix_file = 'poi_matrix.npy'
+            if not os.path.exists(directory_path + poi_matrix_file):
                 print('Poi_matrix is not found, generating ...')
                 read_interaction()
-            print('Loading ', directory_path + train_file, '...')
-            self.ui_adj = np.load(directory_path + train_file)
+            print('Loading ', directory_path + poi_matrix_file, '...')
+            self.ui_adj = np.load(directory_path + poi_matrix_file)
             self.ui_adj = sp.csr_matrix(self.ui_adj)
             print('Computing adj matrix ...')
             self.ui_adj = torch.tensor(self.normalize_graph_mat(self.ui_adj).toarray(), device='cuda:0')
@@ -66,7 +67,10 @@ class Encoder(nn.Module):
             # get individual adj
             adj = torch.zeros((event_type.size(0), event_type.size(1), event_type.size(1)), device='cuda:0')
             for i, e in enumerate(event_type):
+                # Thanks to Lin Fang for reminding me to correct a mistake here.
                 adj[i] = self.ui_adj[e-1, :][:, e-1]
+                # performance can be enhanced by adding the element in the diagonal of the normalized adjacency matrix.
+                adj[i] += self.ui_adj[e-1, e-1]
 
             for enc_layer in self.layer_stack:
                 enc_output = enc_layer(enc_output, adj, event_type)

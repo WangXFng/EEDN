@@ -66,7 +66,7 @@ class Encoder(nn.Module):
             # get individual adj
             adj = torch.zeros((event_type.size(0), event_type.size(1), event_type.size(1)), device='cuda:0')
             for i, e in enumerate(event_type):
-                adj[i] = self.ui_adj[e-1, e-1]
+                adj[i] = self.ui_adj[e-1, :][:, e-1]
 
             for enc_layer in self.layer_stack:
                 enc_output = enc_layer(enc_output, adj, event_type)

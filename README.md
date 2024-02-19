@@ -6,9 +6,9 @@
 
 ### Note
 * Configures are given by Constants.py and Main.py
-* As mentioned in paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons, unless there are not enough GPU memories.
-* When you apply EEND on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune these two hyperparameters by optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (Line.160)
-* If you have any problem, please feel free to contact me by kaysenn@163.com.
+* As mentioned in the paper, EEDN requires a shallow and wide architecture, please **DO NOT** over limit the embedding size for comparisons, unless there are not enough GPU memories.
+* When you apply EEDN on other datasets, as **$\lambda$** and **$\delta$** are sensitive, please tune these two hyperparameters by Optuna at least 100 times, which **HAS BEEN IMPLEMENTED** by the given code in Main.py (Line.160)
+* If you have any problem, please feel free to contact me at kaysenn@163.com.
 
 ### Dependencies
 * Python 3.7.6
@@ -17,17 +17,17 @@ ___
 
 ### Datasets
 	Three files are required: train.txt (for training), tune.txt (for tuning), and test.txt (for testing).
-	Each line denotes a interaction including a user visited a POI at times.
+	Each line denotes an interaction including a user visited a POI at times.
 	The format is [#USER_ID]\t[#POI_ID]\t[#TIMES]\n, which is the same for all files.
 	For example,
 	0	0	1
 	0	1	3
 	0	3	2
 	1	2	1
-	the user (ID=0) visited the POI (ID=0) at 1 times, 
+	the user (ID=0) visited the POI (ID=0) at 1 time, 
 				  the POI (ID=1) at 3 times, 
 				  and the POI (ID=3) at 2 times.
-	the user (ID=1) visited the POI (ID=2) at 1 times.
+	the user (ID=1) visited the POI (ID=2) at 1 time.
 
 
 <table>
@@ -63,4 +63,4 @@ If this repository helps you, please cite:
 	  year={2023}
 	}
 ### Acknowledge
-Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines, and kindly released.
+Thanks to [Coder-Yu](https://github.com/Coder-Yu/SELFRec) who collected many available baselines, and kindly released them.

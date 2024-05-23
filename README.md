@@ -1,5 +1,5 @@
-## EEDN (SIGIR'23) 
-	The paper can be found in [/paper](https://github.com/WangXFng/EEDN/blob/master/paper/EEDN_for_reading_only.pdf) or [ACM SIGIR](https://dl.acm.org/doi/10.1145/3539618.3591678).
+## EEDN (SIGIR'23) [/paper](https://github.com/WangXFng/EEDN/blob/master/paper/EEDN_for_reading_only.pdf)
+	The paper can be found in [/paper] or [ACM SIGIR](https://dl.acm.org/doi/10.1145/3539618.3591678).
 
 ### Run
 	python Main.py
